@@ -1,0 +1,38 @@
+// removing duplicates
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+
+        // Input array
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Remove duplicates (shifting method)
+        int newSize = 0; // Tracks the index for unique elements
+        for (int i = 0; i < n; i++) {
+            boolean isDuplicate = false;
+            for (int j = 0; j < newSize; j++) {
+                if (arr[i] == arr[j]) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (!isDuplicate) {
+                arr[newSize++] = arr[i]; // Keep only unique values
+            }
+        }
+
+        // Resize array (Ignore trailing elements)
+        arr = Arrays.copyOf(arr, newSize);
+
+        // Print the updated array
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
